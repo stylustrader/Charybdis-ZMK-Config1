@@ -110,10 +110,10 @@
 
         MOUSE {
             bindings = <
-  &none         &none         &none             &none           &none    &none      &none      &none     &none  &none
-  &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none    &none      &none      &none     &none  &none
-  &none         &none         &none             &none           &none    &mkp MCLK  &mkp MB4   &mkp MB5  &none  &none
-                              &none             &none           &none    &mkp RCLK  &mkp LCLK
+  &none         &none         &none             &none           &none    &kp LG(LS(Z))  &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)
+  &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none    &mkp MB3       &none      &none      &none      &none
+  &none         &none         &none             &none           &none    &mkp MB4       &mkp LCLK  &mkp RCLK  &mkp MB5   &none
+                              &none             &none           &none    &mkp RCLK      &mkp LCLK
             >;
         };
 
