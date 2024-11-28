@@ -4,9 +4,9 @@
 #include <dt-bindings/zmk/mouse.h>
 
 &lt {
-    tapping-term-ms = <240>;
+    tapping-term-ms = <180>;
     flavor = "tap-preferred";
-    quick-tap-ms = <150>;
+    quick-tap-ms = <50>;
     require-prior-idle-ms = <10>;
 };
 
@@ -75,8 +75,8 @@
         };
         SpaceTabEsc {
             bindings = <&kp ESCAPE>;
-            key-positions = <32 33>;    // These positions correspond to your SPACE and TAB keys
-            layers = <0>;               // Only active on base layer
+            key-positions = <31 32>;    // SPACE and TAB keys
+            layers = <0>;
         };
     };
 
