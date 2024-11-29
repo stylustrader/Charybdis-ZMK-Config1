@@ -75,7 +75,7 @@
         };
         SpaceTabEsc {
             bindings = <&kp ESCAPE>;
-            key-positions = <32 33>;    // These positions correspond to your SPACE and TAB keys
+            key-positions = <33 34>;    // These positions correspond to your SPACE and TAB keys
             layers = <0>;               // Only active on base layer
         };
     };
