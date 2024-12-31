@@ -25,53 +25,51 @@
 };
 
 / {
+     /* input config for mouse move mode */
+    trackball_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&trackball>;
+        layers = <6>;  // adjust these layer numbers to match your layout
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <1>;
+        scale-divisor = <2>;
+    };
+
+    /* input config for snipe mode */
+    trackball_snipe_listener {
+        compatible = "zmk,input-behavior-listener";   
+        device = <&trackball>;
+        layers = <6>;  // adjust this layer number
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        scale-multiplier = <1>;
+        scale-divisor = <4>;
+    };
+
+    /* input config for mouse scroll mode */
+    trackball_scroll_listener {
+        compatible = "zmk,input-behavior-listener";
+        device = <&trackball>;
+        layers = <6>;  // adjust this layer number
+        evt-type = <INPUT_EV_REL>;            
+        x-input-code = <INPUT_REL_MISC>;
+        y-input-code = <INPUT_REL_WHEEL>;
+        y-invert;
+        bindings = <&ib_wheel_scaler 1 14>;
+    };
+
+    /* define a resolution down scaler only for INPUT_REL_WHEEL */
+    ib_wheel_scaler: ib_wheel_scaler {
+        compatible = "zmk,input-behavior-scaler";
+        #binding-cells = <2>;
+        evt-type = <INPUT_EV_REL>;
+        input-code = <INPUT_REL_WHEEL>;
+    };
     combos {
         compatible = "zmk,combos";
-
-        LeftClickRight {
-            bindings = <&mkp LCLK>;
-            key-positions = <16 17>;
-        };
-
-        RightClickRight {
-            bindings = <&mkp RCLK>;
-            key-positions = <17 18>;
-        };
-
-        ParaLeft {
-            bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <3 13>;
-        };
-
-        ParaRight {
-            bindings = <&kp RIGHT_PARENTHESIS>;
-            key-positions = <6 16>;
-        };
-
-        BrakLeft {
-            bindings = <&kp LEFT_BRACKET>;
-            key-positions = <2 12>;
-        };
-
-        BrakRight {
-            bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <7 17>;
-        };
-
-        BraceLeft {
-            bindings = <&kp LEFT_BRACE>;
-            key-positions = <1 11>;
-        };
-
-        BraceRight {
-            bindings = <&kp RIGHT_BRACE>;
-            key-positions = <8 18>;
-        };
-
-        Delete {
-            bindings = <&kp DELETE>;
-            key-positions = <7 8>;
-        };
 
         CapsWord {
             bindings = <&caps_word>;
@@ -85,6 +83,18 @@
     };
 
     behaviors {
+        td_cursor: td_scroll_or_cursor {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&lt 7 ESC>, <&to 0>; // hold for scroll, tap for ESC
+        };
+    
+        td_clk_scrl: td_click_or_scroll {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&mkp RCLK>, <&mo 5>; // tap for right click, double-tap for scroll
+        };
         Shift_Enter: Shift_Enter {
             compatible = "zmk,behavior-hold-tap";
             label = "SHIFT_ENTER";
@@ -121,7 +131,7 @@
             bindings = <
   &none         &none         &none             &none           &none    &kp LG(LS(Z))  &kp LG(V)       &kp LG(C)       &kp LG(X)     &kp LG(Z)
   &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none    &mkp MB3       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW
-  &none         &none         &none             &none           &none    &mkp MB4       &mkp LCLK       &mkp RCLK       &mkp MB5      &none
+  &none         &none         &none             &none           &td_cursor    &mkp MB4       &mkp LCLK       &mkp RCLK       &mkp MB5      &none
                                                 &none           &none    &mkp RCLK      &mkp LCLK
             >;
         };
@@ -150,6 +160,14 @@
   &kp F11  &kp F4  &kp F5      &kp F6     &kp SCROLLLOCK     &none  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI
   &kp F10  &kp F1  &kp F2      &kp F3     &kp PAUSE_BREAK    &none  &none           &none             &none         &none
                               &kp SPACE  &kp TAB            &none  &none
+            >;
+        };
+        SCROLL {
+            bindings = 
+                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                                       &trans  &trans    &trans  &trans
             >;
         };
     };
