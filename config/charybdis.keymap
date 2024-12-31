@@ -2,8 +2,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
-
-#include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/pointing.h>
 
@@ -28,7 +26,7 @@
      /* input config for mouse move mode */
     trackball_listener {
         compatible = "zmk,input-behavior-listener";
-        device = <&vtrackball>;
+        device = <&trackball>;
         layers = <6>;  // adjust these layer numbers to match your layout
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
@@ -40,7 +38,7 @@
     /* input config for snipe mode */
     trackball_snipe_listener {
         compatible = "zmk,input-behavior-listener";   
-        device = <&vtrackball>;
+        device = <&trackball>;
         layers = <6>;  // adjust this layer number
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
@@ -52,7 +50,7 @@
     /* input config for mouse scroll mode */
     trackball_scroll_listener {
         compatible = "zmk,input-behavior-listener";
-        device = <&vtrackball>;
+        device = <&trackball>;
         layers = <6>;  // adjust this layer number
         evt-type = <INPUT_EV_REL>;            
         x-input-code = <INPUT_REL_MISC>;
