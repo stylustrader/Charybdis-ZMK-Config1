@@ -162,8 +162,8 @@
                               &kp SPACE  &kp TAB            &none  &none
             >;
         };
-        SCROLL {
-            bindings = 
+      SCROLL {
+            bindings = <
                 &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
