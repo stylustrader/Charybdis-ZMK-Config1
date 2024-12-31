@@ -81,9 +81,9 @@
 
         MEDIA {
             bindings = <
-  &none         &none         &none             &none           &none    &none         &none         &none         &none         &none
-  &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none    &bt BT_CLR    &none         &none         &none         &bt BT_CLR_ALL
-  &none         &none         &none             &none           &none    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+  &kp F1        &kp F2        &kp F3            &kp F4          &kp F5   &none         &none         &none         &none         &none
+  &kp F6        &kp F7        &kp F8            &kp F9          &kp F10  &bt BT_CLR    &none         &none         &none         &bt BT_CLR_ALL
+  &kp F11       &kp F12       &none             &none           &none    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
                                                 &none           &none    &none         &none
             >;
         };
