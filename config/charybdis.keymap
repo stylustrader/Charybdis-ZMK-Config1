@@ -1,8 +1,8 @@
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors/mouse_keys.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/mouse.h>
-#include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/pointing.h>
 
 &lt {
@@ -23,7 +23,8 @@
 };
 
 / {
-     /* input config for mouse move mode */
+    /* input config for mouse move mode */
+
     trackball_listener {
         compatible = "zmk,input-behavior-listener";
         device = <&trackball>;
@@ -36,8 +37,9 @@
     };
 
     /* input config for snipe mode */
+
     trackball_snipe_listener {
-        compatible = "zmk,input-behavior-listener";   
+        compatible = "zmk,input-behavior-listener";
         device = <&trackball>;
         layers = <6>;  // adjust this layer number
         evt-type = <INPUT_EV_REL>;
@@ -48,11 +50,12 @@
     };
 
     /* input config for mouse scroll mode */
+
     trackball_scroll_listener {
         compatible = "zmk,input-behavior-listener";
         device = <&trackball>;
         layers = <6>;  // adjust this layer number
-        evt-type = <INPUT_EV_REL>;            
+        evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_MISC>;
         y-input-code = <INPUT_REL_WHEEL>;
         y-invert;
@@ -60,12 +63,14 @@
     };
 
     /* define a resolution down scaler only for INPUT_REL_WHEEL */
+
     ib_wheel_scaler: ib_wheel_scaler {
         compatible = "zmk,input-behavior-scaler";
         #binding-cells = <2>;
         evt-type = <INPUT_EV_REL>;
         input-code = <INPUT_REL_WHEEL>;
     };
+
     combos {
         compatible = "zmk,combos";
 
@@ -73,6 +78,7 @@
             bindings = <&caps_word>;
             key-positions = <14 15>;
         };
+
         SpaceTabEsc {
             bindings = <&kp ESCAPE>;
             key-positions = <32 33>;    // SPACE and TAB keys
@@ -84,15 +90,18 @@
         td_cursor: td_scroll_or_cursor {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&lt 7 ESC>, <&to 0>; // hold for scroll, tap for ESC
+            bindings = <&lt 7 ESC>, <&to 0>;
+ // hold for scroll, tap for ESC
         };
-    
+
         td_clk_scrl: td_click_or_scroll {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&mkp RCLK>, <&mo 5>; // tap for right click, double-tap for scroll
+            bindings = <&mkp RCLK>, <&mo 5>;
+ // tap for right click, double-tap for scroll
         };
+
         Shift_Enter: Shift_Enter {
             compatible = "zmk,behavior-hold-tap";
             label = "SHIFT_ENTER";
@@ -127,10 +136,10 @@
 
         MOUSE {
             bindings = <
-  &none         &none         &none             &none           &none    &kp LG(LS(Z))  &kp LG(V)       &kp LG(C)       &kp LG(X)     &kp LG(Z)
-  &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none    &mkp MB3       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW
+  &none         &none         &none             &none           &none         &kp LG(LS(Z))  &kp LG(V)       &kp LG(C)       &kp LG(X)     &kp LG(Z)
+  &kp LEFT_GUI  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &none         &mkp MB3       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW
   &none         &none         &none             &none           &td_cursor    &mkp MB4       &mkp LCLK       &mkp RCLK       &mkp MB5      &none
-                                                &none           &none    &mkp RCLK      &mkp LCLK
+                                                &none           &none         &mkp RCLK      &mkp LCLK
             >;
         };
 
@@ -145,27 +154,28 @@
 
         NUM {
             bindings = <
-  &kp LEFT_BRACKET  &kp N7        &kp N8        &kp N9        &kp RIGHT_BRACKET    &none  &none           &none             &none         &none
-  &kp SEMICOLON     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &none  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI
-  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none  &none           &none             &none         &none
-                                                &kp N0        &kp MINUS            &none  &none
+  &kp LEFT_BRACKET  &kp N7        &kp N8        &kp N9        &kp RIGHT_BRACKET    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2      &bt BT_SEL 3  &bt BT_SEL 4
+  &kp SEMICOLON     &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp EQUAL            &bt BT_CLR_ALL  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI
+  &kp GRAVE         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSLASH        &none           &none           &none             &none         &none
+                                                &kp N0        &kp MINUS            &none           &none
             >;
         };
 
         FUN {
             bindings = <
-  &kp F12  &kp F7  &kp F8      &kp F9     &kp PRINTSCREEN    &none  &none           &none             &none         &none
-  &kp F11  &kp F4  &kp F5      &kp F6     &kp SCROLLLOCK     &none  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI
-  &kp F10  &kp F1  &kp F2      &kp F3     &kp PAUSE_BREAK    &none  &none           &none             &none         &none
-                              &kp SPACE  &kp TAB            &none  &none
+  &kp F12  &kp F7  &kp F8  &kp F9     &kp PRINTSCREEN    &none  &none           &none             &none         &none
+  &kp F11  &kp F4  &kp F5  &kp F6     &kp SCROLLLOCK     &none  &kp LEFT_SHIFT  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI
+  &kp F10  &kp F1  &kp F2  &kp F3     &kp PAUSE_BREAK    &none  &none           &none             &none         &none
+                           &kp SPACE  &kp TAB            &none  &none
             >;
         };
-      SCROLL {
+
+        SCROLL {
             bindings = <
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                                       &trans  &trans    &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                          &trans  &trans    &trans  &trans
             >;
         };
     };
